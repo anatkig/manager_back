@@ -16,7 +16,7 @@ Name
 Description
 ProjectId (foreign key to the Project entity)
 3. Setup Azure Table Storage Integration:
-3.1. Sign up for a temporary Azure subscription (if not already done).
+3.1. Sign up for a temporary Azure subscription.
 3.2. Create a new Azure Storage Account.
 3.3. Install necessary packages to integrate Azure Table Storage with the .NET project.
 3.4. Configure Azure Table Storage in the project.
