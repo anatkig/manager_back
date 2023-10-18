@@ -40,13 +40,3 @@
 /Users/anatoliikiguradze/ProjectAndTaskManager/manager_back/bin/Debug/net7.0/publish/appsettings.json
 /Users/anatoliikiguradze/ProjectAndTaskManager/manager_back/bin/Debug/net7.0/publish/manager_back.deps.json
 /Users/anatoliikiguradze/ProjectAndTaskManager/manager_back/bin/Debug/net7.0/publish/manager_back.runtimeconfig.json
-/Users/anatoliikiguradze/ProjectAndTaskManager/manager_back/bin/Debug/net7.0/publish/publish/web.config
-/Users/anatoliikiguradze/ProjectAndTaskManager/manager_back/bin/Debug/net7.0/publish/publish/appsettings.Development.json
-/Users/anatoliikiguradze/ProjectAndTaskManager/manager_back/bin/Debug/net7.0/publish/publish/appsettings.json
-/Users/anatoliikiguradze/ProjectAndTaskManager/manager_back/bin/Debug/net7.0/publish/publish/manager_back.deps.json
-/Users/anatoliikiguradze/ProjectAndTaskManager/manager_back/bin/Debug/net7.0/publish/publish/manager_back.runtimeconfig.json
-/Users/anatoliikiguradze/ProjectAndTaskManager/manager_back/bin/Debug/net7.0/publish/publish/publish/web.config
-/Users/anatoliikiguradze/ProjectAndTaskManager/manager_back/bin/Debug/net7.0/publish/publish/publish/appsettings.Development.json
-/Users/anatoliikiguradze/ProjectAndTaskManager/manager_back/bin/Debug/net7.0/publish/publish/publish/appsettings.json
-/Users/anatoliikiguradze/ProjectAndTaskManager/manager_back/bin/Debug/net7.0/publish/publish/publish/manager_back.deps.json
-/Users/anatoliikiguradze/ProjectAndTaskManager/manager_back/bin/Debug/net7.0/publish/publish/publish/manager_back.runtimeconfig.json
