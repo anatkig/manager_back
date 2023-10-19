@@ -7,8 +7,9 @@ public class Project : ITableEntity
     public Project()
     {
         // Tasks = new List<ProjectTask>();
+        PartitionKey = partitionKey;
     }
-
+    const string partitionKey = "TasksPartition";
     public string Id { get; set; } = string.Empty;
     // Initialized to non-null value
     public string Name { get; set; } = string.Empty; // Initialized to non-null value
@@ -17,8 +18,7 @@ public class Project : ITableEntity
 
     // public List<ProjectTask> Tasks { get; set; } // Initialized in the constructor
 
-    public string PartitionKey { get; set; } = string.Empty; // Initialized to non-null value
-
+    public string PartitionKey { get; set; }
     public string RowKey { get { return Id; } set { Id = value; } }
 
     public DateTimeOffset? Timestamp { get; set; }
