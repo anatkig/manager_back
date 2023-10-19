@@ -12,6 +12,7 @@ public class Project : ITableEntity
     public string Id { get; set; } = string.Empty;
     // Initialized to non-null value
     public string Name { get; set; } = string.Empty; // Initialized to non-null value
+    public string Description { get; set; } = string.Empty; // Initialized to non-null value
     public string Code { get; set; } = string.Empty; // Initialized to non-null value
 
     // public List<ProjectTask> Tasks { get; set; } // Initialized in the constructor
