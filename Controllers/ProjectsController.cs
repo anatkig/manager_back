@@ -36,6 +36,13 @@ public class ProjectsController : ControllerBase
     [HttpPost]
     public IActionResult AddProject([FromBody] Project project)
     {
+        bool projectExists = _storageService.ProjectExists(project.Name);
+
+        if (projectExists)
+        {
+            return Conflict(new { message = "A project with the same name already exists." });
+        }
+
         _storageService.AddProject(project);
         return CreatedAtAction(nameof(GetProjectById), new { id = project.Id }, project);
     }

@@ -17,6 +17,7 @@ public interface IStorageService
     void AddTask(ProjectTask task);
     void EditTask(ProjectTask task);
     void DeleteTask(string taskId);
+    public bool ProjectExists(string projectName);
 
     IEnumerable<ProjectTask> GetTasksByProjectId(string projectId);
 }
@@ -69,7 +70,13 @@ public class StorageService : IStorageService
         }
     }
 
-
+    public bool ProjectExists(string projectName)
+    {
+        // A more efficient design might involve querying based on PartitionKey and RowKey, or using Azure Cosmos DB for advanced querying capabilities.
+        // But since we have a small project and we are not using Cosmos DB, I think it is fine.s
+        var projects = _projectTableClient.Query<Project>(filter: $"PartitionKey eq '{partitionKey}'");
+        return projects.Any(p => p.Name == projectName);
+    }
 
     public void AddProject(Project project)
     {
