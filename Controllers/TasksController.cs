@@ -16,12 +16,11 @@ public class TasksController : ControllerBase
 
     // GET: api/Tasks
     [HttpGet]
-    public IActionResult GetAllTasks(string projectId)
+    public IActionResult GetAllTasks()
     {
-        IEnumerable<ProjectTask> tasks = _storageService.GetTasksByProjectId(projectId);
+        IEnumerable<ProjectTask> tasks = _storageService.GetAllTasks();
         return Ok(tasks);
     }
-
     // GET: api/Tasks/{id}
     [HttpGet("{id}")]
     public IActionResult GetTaskById(string id)

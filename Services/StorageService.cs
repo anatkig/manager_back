@@ -13,6 +13,7 @@ public interface IStorageService
     void AddProject(Project project);
     void EditProject(Project project);
     IEnumerable<Project> GetAllProjects();
+    IEnumerable<ProjectTask> GetAllTasks();
     ProjectTask GetTaskById(string taskId);
     void AddTask(ProjectTask task);
     void EditTask(ProjectTask task);
@@ -118,4 +119,10 @@ public class StorageService : IStorageService
     {
         return _taskTableClient.Query<ProjectTask>().Where(t => t.Id == projectId);
     }
+
+    public IEnumerable<ProjectTask> GetAllTasks()
+    {
+        return _taskTableClient.Query<ProjectTask>();
+    }
 }
+
