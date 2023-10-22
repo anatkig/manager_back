@@ -34,9 +34,14 @@ public class TasksController : ControllerBase
     }
 
     // GET: api/Tasks/ByProject/{projectId}
-    [HttpGet("ByProject/{projectId}")]
-    public IActionResult GetTasksByProjectId(string projectId)
+    [HttpGet("byproject")]
+    public IActionResult GetTasksByProjectId([FromQuery] string projectId)
     {
+        if (string.IsNullOrWhiteSpace(projectId))
+        {
+            return BadRequest("ProjectId is required.");
+        }
+
         IEnumerable<ProjectTask> tasks = _storageService.GetTasksByProjectId(projectId);
         return Ok(tasks);
     }

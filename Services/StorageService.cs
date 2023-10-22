@@ -117,8 +117,9 @@ public class StorageService : IStorageService
 
     public IEnumerable<ProjectTask> GetTasksByProjectId(string projectId)
     {
-        return _taskTableClient.Query<ProjectTask>().Where(t => t.Id == projectId);
+        return _taskTableClient.Query<ProjectTask>().Where(t => t.ProjectId == projectId).ToList();
     }
+
 
     public IEnumerable<ProjectTask> GetAllTasks()
     {
