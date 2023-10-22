@@ -6,7 +6,6 @@ public class Project : ITableEntity
 {
     public Project()
     {
-        // Tasks = new List<ProjectTask>();
         PartitionKey = partitionKey;
     }
     const string partitionKey = "TasksPartition";
