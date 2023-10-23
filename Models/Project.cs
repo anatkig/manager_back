@@ -8,7 +8,7 @@ public class Project : ITableEntity
     {
         PartitionKey = partitionKey;
     }
-    const string partitionKey = "TasksPartition";
+    const string partitionKey = "ProjectsPartition";
     public string Id { get; set; } = string.Empty;
     // Initialized to non-null value
     public string Name { get; set; } = string.Empty; // Initialized to non-null value

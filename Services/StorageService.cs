@@ -17,7 +17,7 @@ public interface IStorageService
     ProjectTask GetTaskById(string taskId);
     void AddTask(ProjectTask task);
     void EditTask(ProjectTask task);
-    bool DeleteTask(string taskId);
+    void DeleteTask(string taskId);
     public bool ProjectExists(string projectName);
 
     IEnumerable<ProjectTask> GetTasksByProjectId(string projectId);
@@ -28,7 +28,8 @@ public class StorageService : IStorageService
     private readonly TableClient _projectTableClient;
     private readonly TableClient _taskTableClient;
 
-    const string partitionKey = "TasksPartition";
+    const string partitionKeyTasks = "TasksPartition";
+    const string partitionKeyProjects = "ProjectsPartition";
 
     public StorageService(IOptions<StorageConfig> storageConfig)
     {
@@ -46,7 +47,7 @@ public class StorageService : IStorageService
     {
         try
         {
-            var response = _projectTableClient.GetEntity<Project>(partitionKey, projectId);
+            var response = _projectTableClient.GetEntity<Project>(partitionKeyProjects, projectId);
             return response.Value;
         }
         catch (RequestFailedException e) when (e.Status == 404)
@@ -58,7 +59,7 @@ public class StorageService : IStorageService
     {
         try
         {
-            _projectTableClient.DeleteEntity(partitionKey, projectId, ETag.All);
+            _projectTableClient.DeleteEntity(partitionKeyProjects, projectId, ETag.All);
             return true; // Return true if the deletion is successful
         }
         catch (RequestFailedException e)
@@ -75,7 +76,7 @@ public class StorageService : IStorageService
     {
         // A more efficient design might involve querying based on PartitionKey and RowKey, or using Azure Cosmos DB for advanced querying capabilities.
         // But since we have a small project and we are not using Cosmos DB, I think it is fine.s
-        var projects = _projectTableClient.Query<Project>(filter: $"PartitionKey eq '{partitionKey}'");
+        var projects = _projectTableClient.Query<Project>(filter: $"PartitionKey eq '{partitionKeyProjects}'");
         return projects.Any(p => p.Name == projectName);
     }
 
@@ -98,7 +99,7 @@ public class StorageService : IStorageService
 
     public ProjectTask GetTaskById(string taskId)
     {
-        return _taskTableClient.GetEntity<ProjectTask>(partitionKey, taskId);
+        return _taskTableClient.GetEntity<ProjectTask>(partitionKeyTasks, taskId);
     }
     public void AddTask(ProjectTask task)
     {
@@ -110,21 +111,11 @@ public class StorageService : IStorageService
         _taskTableClient.UpdateEntity(task, ETag.All);
     }
 
-    public bool DeleteTask(string taskId)
+    public void DeleteTask(string taskId)
     {
-        try
-        {
-            _projectTableClient.DeleteEntity(partitionKey, taskId, ETag.All);
-            return true; // Return true if the deletion is successful
-        }
-        catch (RequestFailedException e)
-        {
-            if (e.Status == 404)  // Not found
-            {
-                return false;
-            }
-            throw;
-        }
+
+        _taskTableClient.DeleteEntity(partitionKeyTasks, taskId, ETag.All);
+
     }
 
     public IEnumerable<ProjectTask> GetTasksByProjectId(string projectId)
