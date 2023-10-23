@@ -110,9 +110,21 @@ public class StorageService : IStorageService
         _taskTableClient.UpdateEntity(task, ETag.All);
     }
 
-    public void DeleteTask(string taskId)
+    public bool DeleteTask(string taskId)
     {
-        _taskTableClient.DeleteEntity(partitionKey, taskId, ETag.All);
+        try
+        {
+            _projectTableClient.DeleteEntity(partitionKey, taskId, ETag.All);
+            return true; // Return true if the deletion is successful
+        }
+        catch (RequestFailedException e)
+        {
+            if (e.Status == 404)  // Not found
+            {
+                return false;
+            }
+            throw;
+        }
     }
 
     public IEnumerable<ProjectTask> GetTasksByProjectId(string projectId)
