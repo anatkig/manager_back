@@ -15,7 +15,7 @@ public class Project : ITableEntity
     public string Description { get; set; } = string.Empty; // Initialized to non-null value
     public string Code { get; set; } = string.Empty; // Initialized to non-null value
 
-    // public List<ProjectTask> Tasks { get; set; } // Initialized in the constructor
+    public string Complexity { get; set; } = string.Empty; // Initialized to non-null value
 
     public string PartitionKey { get; set; }
     public string RowKey { get { return Id; } set { Id = value; } }
