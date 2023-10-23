@@ -17,7 +17,7 @@ public interface IStorageService
     ProjectTask GetTaskById(string taskId);
     void AddTask(ProjectTask task);
     void EditTask(ProjectTask task);
-    void DeleteTask(string taskId);
+    bool DeleteTask(string taskId);
     public bool ProjectExists(string projectName);
 
     IEnumerable<ProjectTask> GetTasksByProjectId(string projectId);
